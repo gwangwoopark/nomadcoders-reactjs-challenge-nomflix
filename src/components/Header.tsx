@@ -110,12 +110,13 @@ interface IForm {
   keyword: string;
 }
 
+const BaseUrl = "/nomadcoders-reactjs-challenge-nomflix";
 export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
-  const homeMatch = useMatch("");
-  const movieDetailMatch = useMatch("/movie/:id");
-  const tvMatch = useMatch("tv");
-  const tvDetailMatch = useMatch("/tv/:id");
+  const homeMatch = useMatch(`${BaseUrl}`);
+  const movieDetailMatch = useMatch(`${BaseUrl}/movie/:id`);
+  const tvMatch = useMatch(`${BaseUrl}/tv`);
+  const tvDetailMatch = useMatch(`${BaseUrl}/tv/:id`);
   const inputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
@@ -140,7 +141,7 @@ export default function Header() {
   const navigate = useNavigate();
   const onValid = (data: IForm) => {
     console.log(data);
-    navigate(`/search?keyword=${data.keyword}`);
+    navigate(`${BaseUrl}/search?keyword=${data.keyword}`);
   };
   return (
     <Nav variants={navVariants} animate={navAnimation} initial="top">
